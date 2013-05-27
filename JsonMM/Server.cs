@@ -59,6 +59,8 @@ namespace JsonMM
 					{
 						case "application":
 						case "Application":
+						case "app":
+						case "App":
 							switch (segments[2])
 							{
 								case "isRunning":
