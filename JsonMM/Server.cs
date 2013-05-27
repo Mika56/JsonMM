@@ -129,6 +129,7 @@ namespace JsonMM
 			result.Add("repeat", this.SDB.Player.isRepeat);
 			result.Add("shuffle", this.SDB.Player.isShuffle);
 			result.Add("volume", this.SDB.Player.Volume);
+			result.Add("stopAfterCurrent", this.SDB.Player.StopAfterCurrent);
 
 			return result;
 		}

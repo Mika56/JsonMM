@@ -11,6 +11,7 @@ Gets some basic information about MediaMonkey
 - repeat: Whether the repeat function of player is enabled
 - shuffle: Whether the shuffle function of player is enabled
 - volume: The player volume, 0 being 0% and 1 being 100%
+- stopAfterCurrent: True if playback will be stopped once current song is over 
 
 ### Method ###
 
@@ -30,7 +31,8 @@ Gets some basic information about MediaMonkey
 		playing: true,
 		repeat: false,
 		shuffle: false,
-		volume: 1
+		volume: 1,
+		stopAfterCurrent: false
 	},
 	status: 0
 }
