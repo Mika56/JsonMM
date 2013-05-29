@@ -85,6 +85,38 @@ namespace JsonMM
 								case "getCurrentSong":
 									retour.Add("result", this.player_getCurrentSong(request.QueryString));
 									break;
+								case "getCurrentPlaylist":
+									retour.Add("result", this.player_getCurrentPlaylist(request.QueryString));
+									break;
+								case "controls":
+									switch (segments[3])
+									{
+										case "next":
+											this.SDB.Player.Next();
+											retour.Add("result", "ok");
+											break;
+										case "pause":
+											this.SDB.Player.Pause();
+											retour.Add("result", "ok");
+											break;
+										case "play":
+											this.SDB.Player.Play();
+											retour.Add("result", "ok");
+											break;
+										case "previous":
+											this.SDB.Player.Previous();
+											retour.Add("result", "ok");
+											break;
+										case "stop":
+											this.SDB.Player.Stop();
+											retour.Add("result", "ok");
+											break;
+										default:
+											status = 1;
+											retour.Add("error", "Unknown method");
+											break;
+									}
+									break;
 								default:
 									status = 1;
 									retour.Add("error", "Unknown method");
@@ -113,6 +145,7 @@ namespace JsonMM
 			return JsonConvert.SerializeObject(retour);
 		}
 
+
 		private bool application_isRunning()
 		{
 			return this.SDB.IsRunning;
@@ -139,6 +172,19 @@ namespace JsonMM
 		private JObject player_getCurrentSong(NameValueCollection options)
 		{
 			return MMUtils.getSongData(this.SDB.Player.CurrentSong, this.SDB, Convert.ToBoolean(options["getAlbum"]), Convert.ToBoolean(options["getAlbumArt"]), Convert.ToBoolean(options["getArtist"]));
+		}
+
+		private JArray player_getCurrentPlaylist(NameValueCollection options)
+		{
+			SDBSongList liste = SDB.Player.CurrentSongList;
+			JArray result = new JArray();
+			int count = liste.Count;
+			for (int i = 0; i < count; i++)
+			{
+				result.Add(MMUtils.getSongData(liste.Item[i], this.SDB, Convert.ToBoolean(options["getAlbum"]), Convert.ToBoolean(options["getAlbumArt"]), Convert.ToBoolean(options["getArtist"])));
+			}
+
+			return result;
 		}
 	}
 }

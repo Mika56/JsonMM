@@ -7,6 +7,8 @@ The Player method is one of the top methods. Because of this, it requires a sub-
 
 - [getInfos](getInfos.md): Gets some basic information (volume, shuffle, repeat, playbckTime, ...)
 - [getCurrentSong](getCurrentSong.md): Gets the current playing song
+- [getCurrentPlaylist](getCurrentPlaylist.md): Returns all songs in queue
+- [controls](controls.md)
 
 #### Links ####
 
